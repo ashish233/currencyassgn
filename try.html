@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html>
+<head>
+		<title>
+				Currency Exchange
+		</title>
+		<link rel="stylesheet" href="./boot/css/bootstrap.css">
+		<link rel="stylesheet" href="./style.css">
+		<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<!-- 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+ -->	
+ </head>
+
+ <body ng-app="myApp" ng-controller="myCtrl">
+ 	<div class='container-fulid'>
+ 			<nav class="navbar navbar-default">
+			 	 <div class="container-fluid">
+			    <!-- Brand and toggle get grouped for better mobile display -->
+			    <div class="navbar-header">
+			      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+			        <span class="sr-only">Toggle navigation</span>
+			        <span class="icon-bar"></span>
+			        <span class="icon-bar"></span>
+			        <span class="icon-bar"></span>
+			      </button>
+			      <a class="navbar-brand" href="#">Exchange Platform</a>
+			    </div>
+
+			    <!-- Collect the nav links, forms, and other content for toggling -->
+			    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			      <ul class="nav navbar-nav navbar-right">
+			        <li><a href="#">Exchage</a></li>
+			        <li><a href="#">News</a></li>
+			        
+			      </ul>
+			    </div><!-- /.navbar-collapse -->
+			  </div><!-- /.container-fluid -->
+		    </nav>
+
+
+		 <div class="row">
+		 	<div class="col-md-6">
+			 	 <h3>Currency exchage</h3>  
+		 	</div>
+		  
+		  <div class="col-md-6" align="right" style="margin-top: 20px;">
+		  	Amout <input class="input"  ng-model="amount" type="input"></input>
+		  </div>
+	
+		 </div>   
+		 
+		 <div class="mr">
+		  	<div class="row">
+  <div class="col-md-4">
+
+    <div class="thumbnail" >
+      <h4 align="center" class="h">USD/JPY</h4>	
+      	
+      <div class="row">
+      		<div class="solid col-sm-6">
+      			 <div > 
+						<h3 align="center"> {{bid1}}</h3>
+				 </div>
+      			 <div class="bt"></div>
+  			<a class="btn b1" ng-click="myBid1()" >Bid</a>
+      		</div>
+      		<div class="solid col-sm-6">
+      			 <div> 
+						<h3 align="center" > {{ask1}}</h3>
+			 	 </div>
+      		
+         		 <div class="bt"></div>
+       			<a class="btn b2" ng-click="myAsk1()">Ask</a>
+      		</div >
+      </div>      
+    </div>
+  </div>
+
+<div class="col-md-4">
+
+    <div class="thumbnail" >
+      <h4 align="center" class="h">AUD/JPY</h4>	
+      	
+      <div class="row">
+      		<div class="solid col-sm-6">
+      			  <div > 
+						<h3 align="center"> {{bid2}}</h3>
+				 </div>
+      			 <div class="bt"></div>
+       			<a class="btn b1" ng-click="myBid2()">Bid</a>
+      		</div>
+      		<div class="solid col-sm-6">
+      			 <div> 
+					<h3 align="center"> {{ask2}}</h3>
+			 	 </div>
+      		
+      			 <div class="bt"></div>
+       			<a class="btn b2" ng-click="myAsk2()">Ask</a>
+      		</div >
+      </div>      
+    </div>
+  </div>
+  
+<div class="col-md-4">
+
+    <div class="thumbnail" >
+      <h4 align="center" class="h">EUR/CAD</h4>	
+      	
+      <div class="row">
+      		<div class="solid col-sm-6">
+      		 <div> 
+      		     <h3 align="center"> {{bid3}}</h3>
+				 </div>
+      			 <div class="bt"></div>
+       			<a class="btn b1" ng-click="myBid3()" >Bid</a>
+      		</div>
+      		<div class="solid col-sm-6">
+      			 <div> 
+					<h3 align="center"> {{ask3}}</h3>
+			 	 </div>
+      		
+      			 <div class="bt"></div>
+       			<a class="btn b2" ng-click="myAsk3()">Ask</a>
+      		</div >
+      </div>      
+    </div>
+  </div>
+
+</div>
+
+
+<div class="row">
+  <div class="col-md-4">
+
+    <div class="thumbnail" style="width:300px; ">
+      <h4 align="center" class="h">USD/CNY</h4>	
+      	
+      <div class="row">
+      		<div class="solid col-sm-6">
+      		      <div> 
+						<h3 align="center"> {{bid4}}</h3>
+				 </div>
+      			 <div class="bt"></div>
+
+       			<a class="btn b1" ng-click="myBid4()">Bid</a>
+      		</div>
+      		<div class="solid col-sm-6">
+         		  <div> 
+						<h3 align="center"> {{ask4}}</h3>
+			 	 </div>
+      		
+         		 <div class="bt"></div>
+
+       			<a class="btn b2" ng-click="myAsk4()">Ask</a>
+      		</div >
+      </div>      
+    </div>
+  </div>
+
+<div class="col-md-4">
+
+    <div class="thumbnail" style="width:300px;">
+      <h4 align="center" class="h">CAD/CNY</h4>	
+      	
+      <div class="row">
+      		<div class="solid col-sm-6">
+      		  <div> 
+				  <h3 align="center"> {{bid5}}</h3>
+				 </div>
+      			
+      			 <div class="bt"></div>
+       			<a class="btn b1" ng-click="myBid5()">Bid</a>
+      		</div>
+      		<div class="solid col-sm-6">
+      		 <div> 
+			 	<h3 align="center"> {{ask5}}</h3>
+			 	 </div>
+      		
+      			 <div class="bt"></div>
+       			<a class="btn b2" ng-click="myAsk5()">Ask</a>
+      		</div >
+      </div>      
+    </div>
+  </div>
+  
+<div class="col-md-4">
+
+    <div class="thumbnail" style="width:300px;">
+      <h4 align="center" class="h">GPB/USD</h4>	
+      	
+      <div class="row">
+      		<div class="solid col-sm-6">
+      		  <div> 
+						<h3 align="center"> {{bid6}}</h3>
+				 </div>
+      			
+      			 <div class="bt"></div>
+       			<a class="btn b1" ng-click="myBid6()">Bid</a>
+      		</div>
+      		<div class="solid col-sm-6">
+      		 <div> 
+				<h3 align="center"> {{ask6}}</h3>
+			 	 </div>
+      		
+      			 <div class="bt"></div>
+       			<a class="btn b2" ng-click="myAsk6()" >Ask</a>
+      		</div >
+      </div>      
+    </div>
+  </div>
+
+</div>
+
+		  </div>
+
+		 <div>
+		 	<h4>Transition History	</h4>
+		 	<table class="table ">
+    <thead>
+      <tr >
+        <th>Order</th>
+        <th>Currency</th>
+        <th>Amount</th>
+        <th>Price</th>
+         <th>Date</th>
+        <th>Time</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="background-color: {{color1}}">
+        <td>{{order1}}</td>
+        <td>{{currency1}}</td>
+        <td>{{amount1}}</td>
+        <td>{{price1}}</td>
+        <td>{{date1 | date:'dd/MM/yyyy'}}</td>
+        <td>{{date1 | date:'HH:mm:ss'}}</td>
+        
+      </tr>
+    
+     <tr style="background-color: {{color2}}">
+        <td>{{order2}}</td>
+        <td>{{currency2}}</td>
+        <td>{{amount2}}</td>
+        <td>{{price2}}</td>
+        <td>{{date2 | date:'dd/MM/yyyy'}}</td>
+        <td>{{date2| date:'HH:mm:ss'}}</td>
+        
+      </tr>
+     <tr style="background-color: {{color3}}">
+        <td>{{order3}}</td>
+        <td>{{currency3}}</td>
+        <td>{{amount3}}</td>
+        <td>{{price3}}</td>
+        <td>{{date3 | date:'dd/MM/yyyy'}}</td>
+        <td>{{date3| date:'HH:mm:ss'}}</td>
+        
+      </tr>
+     <tr style="background-color: {{color4}}">
+        <td>{{order4}}</td>
+        <td>{{currency4}}</td>
+        <td>{{amount4}}</td>
+        <td>{{price4}}</td>
+        <td>{{date4 | date:'dd/MM/yyyy'}}</td>
+        <td>{{date4| date:'HH:mm:ss'}}</td>
+        
+      </tr>
+     <tr style="background-color: {{color5}}">
+        <td>{{order5}}</td>
+        <td>{{currency5}}</td>
+        <td>{{amount5}}</td>
+        <td>{{price5}}</td>
+        <td>{{date5 | date:'dd/MM/yyyy'}}</td>
+        <td>{{date5| date:'HH:mm:ss'}}</td>
+        
+      </tr>
+     <tr style="background-color: {{color6}}">
+        <td>{{order6}}</td>
+        <td>{{currency6}}</td>
+        <td>{{amount6}}</td>
+        <td>{{price6}}</td>
+        <td>{{date6 | date:'dd/MM/yyyy'}}</td>
+        <td>{{date6| date:'HH:mm:ss'}}</td>
+        
+      </tr>
+   
+    </tbody>
+  </table>
+
+
+		 </div>
+		 </div>
+
+
+
+		 <div>
+		 	
+
+
+
+
+		 </div>
+
+ </body>
+
+<script>
+var app = angular.module('myApp', []);
+app.controller('myCtrl', function($scope, $interval) {
+  $scope.bid1 = (Math.random()*10).toFixed(4);
+  $scope.bid2 = (Math.random()*10).toFixed(4);
+  $scope.bid3 = (Math.random()*10).toFixed(4);
+  $scope.bid4 = (Math.random()*10).toFixed(4);
+  $scope.bid5 = (Math.random()*10).toFixed(4);
+  $scope.bid6 = (Math.random()*10).toFixed(4);
+ var date = new Date();
+  var  amt=$scope.amount;
+
+  
+  // $scope.ask1 = (Math.random()*10).toFixed(4);
+  // $scope.ask2 = (Math.random()*10).toFixed(4);
+  // $scope.ask3 = (Math.random()*10).toFixed(4);
+  // $scope.ask4 = (Math.random()*10).toFixed(4);
+  // $scope.ask5 = (Math.random()*10).toFixed(4);
+  // $scope.ask6 = (Math.random()*10).toFixed(4);
+ // $scope.amount=20000;
+
+  
+  $scope.myBid1=function()
+  { 
+  	$scope.order1='Bye';
+  	$scope.currency1="USD/JPY"
+  	$scope.amount1=(parseFloat($scope.amount)+(parseFloat($scope.bid1)*1000)).toFixed(2);
+    $scope.price1=$scope.bid1;
+  	$scope.date1= new Date();
+    $scope.color1="green";
+  },
+
+  $scope.myAsk1=function()
+  {
+ 	$scope.order1='Sell';
+  	$scope.currency1="USD/JPY"
+  	$scope.amount1=(parseFloat($scope.amount)-(parseFloat($scope.bid1)*1000)).toFixed(2);
+  	$scope.price1=$scope.ask1;
+  	$scope.date1= new Date();
+    $scope.color1="red";
+
+  }
+
+
+ $scope.myBid2=function()
+  { 
+  	$scope.order2='Bye';
+  	$scope.currency2="AUD/JPY"
+  	$scope.amount2=(parseFloat($scope.amount)+(parseFloat($scope.bid2)*1000)).toFixed(2);
+  	$scope.price2=$scope.bid2;
+  	$scope.date2= new Date();
+    $scope.color2="green";
+  },
+
+  $scope.myAsk2=function()
+  {
+ 	$scope.order2='Sell';
+  	$scope.currency2="AUD/JPY"
+  	$scope.amount2=(parseFloat($scope.amount)-(parseFloat($scope.ask2)*1000)).toFixed(2);
+  	$scope.price2=$scope.ask2;
+  	$scope.date2= new Date();
+    $scope.color2="red";
+
+  }
+  $scope.myBid3=function()
+  { 
+  	$scope.order3='Bye';
+  	$scope.currency3="EUR/CAD"
+  	$scope.amount3=(parseFloat($scope.amount)+(parseFloat($scope.bid3)*1000)).toFixed(2);
+  	$scope.price3=$scope.bid3;
+  	$scope.date3= new Date();
+    $scope.color3="green";
+  },
+
+  $scope.myAsk3=function()
+  {
+ 	$scope.order3='Sell';
+  	$scope.currency3="EUR/CAD"
+  	$scope.amount3=(parseFloat($scope.amount)-(parseFloat($scope.ask3)*1000)).toFixed(2);
+  	$scope.price3=$scope.ask3;
+  	$scope.date3= new Date();
+    $scope.color3="red";
+
+  }
+  $scope.myBid4=function()
+  { 
+  	$scope.order4='Bye';
+  	$scope.currency4="USD/CNY"
+  	$scope.amount4=(parseFloat($scope.amount)+(parseFloat($scope.bid4)*1000)).toFixed(2);
+  	$scope.price4=$scope.bid4;
+  	$scope.date4= new Date();
+    $scope.color4="green";
+  },
+
+  $scope.myAsk4=function()
+  {
+ 	$scope.order4='Sell';
+  	$scope.currency4="USD/CNY"
+  	$scope.amount4=(parseFloat($scope.amount)-(parseFloat($scope.ask4)*1000)).toFixed(2);
+  	$scope.price4=$scope.ask4;
+  	$scope.date4= new Date();
+    $scope.color4="red";
+
+  }
+  $scope.myBid5=function()
+  { 
+  	$scope.order5='Bye';
+  	$scope.currency5="CAD/CNY"
+  	$scope.amount5=(parseFloat($scope.amount)+(parseFloat($scope.bid5)*1000)).toFixed(2);
+  	$scope.price5=$scope.bid5;
+  	$scope.date5= new Date();
+  	
+    $scope.color5="green";
+  },
+
+  $scope.myAsk5=function()
+  {
+ 	$scope.order5='Sell';
+  	$scope.currency5="CAD/CNY"
+  	$scope.amount5=(parseFloat($scope.amount)-(parseFloat($scope.ask5)*1000)).toFixed(2);
+  	$scope.price5=$scope.ask5;
+  	$scope.date5= new Date();
+    $scope.color5="red";
+
+  }
+ $scope.myBid6=function()
+  { 
+  	$scope.order6='Bye';
+  	$scope.currency6="GPB/USD"
+  	$scope.amount6=(parseFloat($scope.amount)+(parseFloat($scope.bid5)*1000)).toFixed(2);
+  	$scope.price6=$scope.bid5;
+  	$scope.date6= new Date();
+  	
+    $scope.color6="green";
+  },
+
+  $scope.myAsk6=function()
+  {
+ 	$scope.order6='Sell';
+  	$scope.currency6="GPB/USD"
+  	$scope.amount6=(parseFloat($scope.amount)-(parseFloat($scope.ask5)*1000)).toFixed(2);
+  	$scope.price6=$scope.ask5;
+  	$scope.date6= new Date();
+    $scope.color6="red";
+
+  }
+
+ $interval(function () {
+      $scope.ask1 = parseFloat(((Math.random()*10)+parseFloat(1)).toFixed(4));
+
+  }, 1000);
+    
+ $interval(function () {
+      $scope.ask2 = parseFloat(((Math.random()*9)+parseFloat(1)).toFixed(4));
+
+  }, 1000);
+
+ $interval(function () {
+      $scope.ask3 = parseFloat(((Math.random()*8)+parseFloat(1)).toFixed(4));
+
+  }, 1000);
+
+ $interval(function () {
+      $scope.ask4 = parseFloat(((Math.random()*7)+parseFloat(1)).toFixed(4));
+
+  }, 1000);
+
+ $interval(function () {
+      $scope.ask5 = parseFloat(((Math.random()*6)+parseFloat(1)).toFixed(4));
+
+  }, 1000);
+
+ $interval(function () {
+      $scope.ask6 = parseFloat(((Math.random()*5)+parseFloat(1)).toFixed(4));
+
+  }, 1000);
+ 
+
+  $interval(function () {
+      $scope.bid1 = (Math.random()*10).toFixed(4);
+  }, 1000);
+
+$interval(function () {
+      $scope.bid2 = (Math.random()*9).toFixed(4);
+  }, 1000);
+
+$interval(function () {
+      $scope.bid3 = (Math.random()*8).toFixed(4);
+  }, 1000);
+
+$interval(function () {
+      $scope.bid4 = (Math.random()*7).toFixed(4);
+  }, 1000);
+
+$interval(function () {
+      $scope.bid5 = (Math.random()*6).toFixed(4);
+  }, 1000);
+
+$interval(function () {
+      $scope.bid6 = (Math.random()*5).toFixed(4);
+  }, 1000);
+  
+
+
+
+});
+</script>
+
+ </html>
+		

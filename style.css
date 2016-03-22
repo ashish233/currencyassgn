@@ -1,0 +1,61 @@
+.solid {
+	border-style: solid;
+	height: 100px;
+	width: 100px;	
+	margin: 30px;
+	border-width: 2px;
+}
+
+.mr
+{
+	margin-left: 100px;
+}
+.mr1
+{
+	margin-left: 100px;
+	margin-right: -100px;
+}
+.thumbnail
+{
+	border-style: solid;
+	border-color: black;
+	border-width: 1.7px;
+	width: 300px;
+
+}
+.bdr
+{
+	border-style: solid;
+	height: 200px;
+    width: 300px;	
+}
+
+.h
+{
+	height:40px;
+	width:290px;
+	margin-top: 0px;
+	background-color: gray;
+	padding-top: 10px;
+	border-bottom-style: solid;
+}
+.bt{
+  margin-top:20px;
+
+}
+.b1
+{
+	margin-left:-15px;
+	width:97px;
+	background-color:green;
+	color:white;
+}
+
+
+.b2
+{
+	margin-left:-15px;
+	width:95px;
+	background-color:red;
+	color:white;
+}
