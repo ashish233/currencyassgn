@@ -8,7 +8,105 @@
 		<link rel="stylesheet" href="./style.css">
 		<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
 <!-- 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
- -->	
+
+ -->
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script type="text/javascript">
+        $(document).ready(function () {
+            $('#divRss').FeedEk({
+                FeedUrl: 'http://feeds.reuters.com/reuters/INVideoBreakingviews',
+                MaxCount: 1
+            });
+            $('#divRsst').FeedEk({
+                FeedUrl: 'http://jquery-plugins.net/rss',
+               ShowDesc: true,
+                MaxCount: 1,
+                 ShowPubDate: true, 
+            });
+
+       
+        });
+
+    </script>
+    <style>
+        body{font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;background-color: #efefef;font-size: 13px;
+
+        line-height: 17px !important;}
+        .rssDiv{float: left;padding-right: 35px;}
+        ol{width: 300px !important;}
+    </style>
+ 	<script type="text/javascript">
+ 	
+ /*
+* FeedEk jQuery RSS/ATOM Feed Plugin v3.0 with YQL API
+* http://jquery-plugins.net/FeedEk/FeedEk.html  https://github.com/enginkizil/FeedEk
+* Author : Engin KIZIL http://www.enginkizil.com   
+*/
+
+(function ($) {
+    $.fn.FeedEk = function (opt) {
+        var def = $.extend({
+            MaxCount: 5,
+            ShowDesc: true,
+            ShowPubDate: true,
+            DescCharacterLimit: 0,
+            TitleLinkTarget: "_blank",
+            DateFormat: "",
+            DateFormatLang:"en"
+        }, opt);
+        
+        var id = $(this).attr("id"), i, s = "", dt;
+        $("#" + id).empty();
+        if (def.FeedUrl == undefined) return;       
+        $("#" + id).append('<img src="loader.gif" />');
+
+        var YQLstr = 'SELECT channel.item FROM feednormalizer WHERE output="rss_2.0" AND url ="' + def.FeedUrl + '" LIMIT ' + def.MaxCount;
+
+        $.ajax({
+            url: "https://query.yahooapis.com/v1/public/yql?q=" + encodeURIComponent(YQLstr) + "&format=json&diagnostics=false&callback=?",
+            dataType: "json",
+            success: function (data) {
+                $("#" + id).empty();
+                if (!(data.query.results.rss instanceof Array)) {
+                    data.query.results.rss = [data.query.results.rss];
+                }
+                $.each(data.query.results.rss, function (e, itm) {
+                    s += '<li><div class="itemTitle"><a href="' + itm.channel.item.link + '" target="' + def.TitleLinkTarget + '" >' + itm.channel.item.title + '</a></div>';
+                    
+                    if (def.ShowPubDate){
+                        dt = new Date(itm.channel.item.pubDate);
+                        s += '<div class="itemDate">';
+                        if ($.trim(def.DateFormat).length > 0) {
+                            try {
+                                moment.lang(def.DateFormatLang);
+                                s += moment(dt).format(def.DateFormat);
+                            }
+                            catch (e){s += dt.toLocaleDateString();}                            
+                        }
+                        else {
+                            s += dt.toLocaleDateString();
+                        }
+                        s += '</div>';
+                    }
+                    if (def.ShowDesc) {
+                        s += '<div class="itemContent">';
+                         if (def.DescCharacterLimit > 0 && itm.channel.item.description.length > def.DescCharacterLimit) {
+                            s += itm.channel.item.description.substring(0, def.DescCharacterLimit) + '...';
+                        }
+                        else {
+                            s += itm.channel.item.description;
+                         }
+                         s += '</div>';
+                    }
+                });
+                $("#" + id).append('<ul class="feedEkList">' + s + '</ul>');
+            }
+        });
+    };
+})(jQuery);
+ 	
+ </script>
+ 
  </head>
 
  <body ng-app="myApp" ng-controller="myCtrl">
@@ -40,17 +138,20 @@
 
 		 <div class="row">
 		 	<div class="col-md-6">
-			 	 <h3>Currency exchage</h3>  
+			 	 <h3 style="margin-left:30px;" >Currency exchage</h3>  
 		 	</div>
 		  
-		  <div class="col-md-6" align="right" style="margin-top: 20px;">
-		  	Amout <input class="input"  ng-model="amount" type="input"></input>
-		  </div>
+		  <div class="col-md-6"  style="margin-left: 1000px;">
+       	  Amout <input name="myfield" class="input"  ng-model="amount" type="input"></input>
+        </form>
+      
+      </div>
 	
 		 </div>   
 		 
 		 <div class="mr">
-		  	<div class="row">
+		  	<br/>
+        <div class="row">
   <div class="col-md-4">
 
     <div class="thumbnail" >
@@ -214,8 +315,8 @@
 		  </div>
 
 		 <div>
-		 	<h4>Transition History	</h4>
-		 	<table class="table ">
+		 	<h4 style="margin-left:30px;">Transition History	</h4>
+		 	<table class="table " style="width:1150px;" align="center">
     <thead>
       <tr >
         <th>Order</th>
@@ -294,7 +395,62 @@
 
 		 <div>
 		 	
+        <table class="table" style="width:1150" align="center">
+    <tr style="background-color:grey">
+      <th >Date</th>
+      <th>Title</th>
 
+     <tr>      
+      <td>2013/05/06</td>
+      <td><button class="btn" data-target=".bs-example-modal-lg" data-toggle=
+      "modal" type="button">Large Modal</button></td>
+    </tr>
+     <tr>      
+      <td>2013/05/06</td>
+      <td><button class="btn" data-target=".bs-example-modal-lg" data-toggle=
+      "modal" type="button">Large modal</button></td>
+    </tr>
+     <tr>      
+      <td>2013/05/06</td>
+      <td><button class="btn" data-target=".bs-example-modal-lg" data-toggle=
+      "modal" type="button">Large modal</button></td>
+    </tr>
+     <tr>      
+      <td>2013/05/06</td>
+      <td>
+      <button class="btn" data-target=".bs-example-modal-lg" data-toggle=
+      "modal" type="button">Large modal</button></td>
+    </tr>
+
+  </table><!-- Large modal -->
+   <div aria-labelledby="myLargeModalLabel" class=
+  "modal fade bs-example-modal-lg" role="dialog" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+       <div id="divRsst"></div>
+      </div>
+    </div>
+  </div>
+
+
+  <div style="padding:10px;">
+    <h1></h1>
+    <div>
+        <div class="rssDiv">
+            <p>
+                <strong></strong>
+            <p />
+            <div id=" "></div>
+         
+          
+        </div>
+
+        
+
+  <script src="./boot/js/bootstrap.js">
+  </script>
+
+        </div>
 
 
 
@@ -315,15 +471,6 @@ app.controller('myCtrl', function($scope, $interval) {
   var  amt=$scope.amount;
 
   
-  // $scope.ask1 = (Math.random()*10).toFixed(4);
-  // $scope.ask2 = (Math.random()*10).toFixed(4);
-  // $scope.ask3 = (Math.random()*10).toFixed(4);
-  // $scope.ask4 = (Math.random()*10).toFixed(4);
-  // $scope.ask5 = (Math.random()*10).toFixed(4);
-  // $scope.ask6 = (Math.random()*10).toFixed(4);
- // $scope.amount=20000;
-
-  
   $scope.myBid1=function()
   { 
   	$scope.order1='Bye';
@@ -339,6 +486,7 @@ app.controller('myCtrl', function($scope, $interval) {
  	$scope.order1='Sell';
   	$scope.currency1="USD/JPY"
   	$scope.amount1=(parseFloat($scope.amount)-(parseFloat($scope.bid1)*1000)).toFixed(2);
+    $scope.amount1=$scope.amount;
   	$scope.price1=$scope.ask1;
   	$scope.date1= new Date();
     $scope.color1="red";
@@ -351,6 +499,7 @@ app.controller('myCtrl', function($scope, $interval) {
   	$scope.order2='Bye';
   	$scope.currency2="AUD/JPY"
   	$scope.amount2=(parseFloat($scope.amount)+(parseFloat($scope.bid2)*1000)).toFixed(2);
+    $scope.amount2=$scope.amount;
   	$scope.price2=$scope.bid2;
   	$scope.date2= new Date();
     $scope.color2="green";
@@ -371,6 +520,7 @@ app.controller('myCtrl', function($scope, $interval) {
   	$scope.order3='Bye';
   	$scope.currency3="EUR/CAD"
   	$scope.amount3=(parseFloat($scope.amount)+(parseFloat($scope.bid3)*1000)).toFixed(2);
+    $scope.amount3=$scope.amount;
   	$scope.price3=$scope.bid3;
   	$scope.date3= new Date();
     $scope.color3="green";
@@ -381,6 +531,7 @@ app.controller('myCtrl', function($scope, $interval) {
  	$scope.order3='Sell';
   	$scope.currency3="EUR/CAD"
   	$scope.amount3=(parseFloat($scope.amount)-(parseFloat($scope.ask3)*1000)).toFixed(2);
+    $scope.amount3=$scope.amount;
   	$scope.price3=$scope.ask3;
   	$scope.date3= new Date();
     $scope.color3="red";
@@ -391,6 +542,7 @@ app.controller('myCtrl', function($scope, $interval) {
   	$scope.order4='Bye';
   	$scope.currency4="USD/CNY"
   	$scope.amount4=(parseFloat($scope.amount)+(parseFloat($scope.bid4)*1000)).toFixed(2);
+    $scope.amount4=$scope.amount;
   	$scope.price4=$scope.bid4;
   	$scope.date4= new Date();
     $scope.color4="green";
@@ -401,6 +553,7 @@ app.controller('myCtrl', function($scope, $interval) {
  	$scope.order4='Sell';
   	$scope.currency4="USD/CNY"
   	$scope.amount4=(parseFloat($scope.amount)-(parseFloat($scope.ask4)*1000)).toFixed(2);
+    $scope.amount4=$scope.amount;
   	$scope.price4=$scope.ask4;
   	$scope.date4= new Date();
     $scope.color4="red";
@@ -411,6 +564,7 @@ app.controller('myCtrl', function($scope, $interval) {
   	$scope.order5='Bye';
   	$scope.currency5="CAD/CNY"
   	$scope.amount5=(parseFloat($scope.amount)+(parseFloat($scope.bid5)*1000)).toFixed(2);
+    $scope.amount5=$scope.amount;
   	$scope.price5=$scope.bid5;
   	$scope.date5= new Date();
   	
@@ -422,6 +576,7 @@ app.controller('myCtrl', function($scope, $interval) {
  	$scope.order5='Sell';
   	$scope.currency5="CAD/CNY"
   	$scope.amount5=(parseFloat($scope.amount)-(parseFloat($scope.ask5)*1000)).toFixed(2);
+    $scope.amount5=$scope.amount;
   	$scope.price5=$scope.ask5;
   	$scope.date5= new Date();
     $scope.color5="red";
@@ -432,9 +587,9 @@ app.controller('myCtrl', function($scope, $interval) {
   	$scope.order6='Bye';
   	$scope.currency6="GPB/USD"
   	$scope.amount6=(parseFloat($scope.amount)+(parseFloat($scope.bid5)*1000)).toFixed(2);
+    $scope.amount6=$scope.amount;
   	$scope.price6=$scope.bid5;
   	$scope.date6= new Date();
-  	
     $scope.color6="green";
   },
 
@@ -509,6 +664,43 @@ $interval(function () {
 
 });
 </script>
+ <script type="text/javascript">
+        $(document).ready(function () {
+            $('#divRss').FeedEk({
+                FeedUrl: 'http://jquery-plugins.net/rss',
+                MaxCount: 3
+            });
 
+            $('#divRss2').FeedEk({
+                FeedUrl: 'http://jquery-plugins.net/rss',
+                MaxCount: 4,
+                ShowDesc: true,
+                ShowPubDate: false,
+                DescCharacterLimit: 100
+            });
+
+            $('#divRss3').FeedEk({
+                FeedUrl: 'http://jquery-plugins.net/rss',
+                MaxCount: 5,
+                ShowDesc: false
+            });
+
+            $('#divRss4').FeedEk({
+                FeedUrl: 'http://jquery-plugins.net/rss',
+                MaxCount: 2,
+                DateFormat: 'L',
+                DateFormatLang: 'en'
+            });
+
+            $('#divRss5').FeedEk({
+                FeedUrl: 'http://jquery-plugins.net/rss',
+                MaxCount: 2,
+                DateFormat: 'L',
+                DateFormatLang: 'tr'
+            });
+           
+        });
+
+    </script>
  </html>
 		
